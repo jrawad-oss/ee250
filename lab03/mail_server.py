@@ -24,11 +24,17 @@ def load_mail() -> List[Dict[str, str]]:
 
 def save_mail(mail: List[Dict[str, str]]) -> None:
     """TODO: fill out this docstring (using the load_mail docstring as a guide)
+   Saves the mail (a list of dictionaries representing the mail entries) into json format
+
+   Returns: nothing
     """
     thisdir.joinpath('mail_db.json').write_text(json.dumps(mail, indent=4))
 
 def add_mail(mail_entry: Dict[str, str]) -> str:
     """TODO: fill out this docstring (using the load_mail docstring as a guide)
+   Assigns a mail id for the mail entry (a dictionary of the mail entry's attributes) 
+
+   Returns: mail ID (string)
     """
     mail = load_mail()
     mail.append(mail_entry)
@@ -38,6 +44,9 @@ def add_mail(mail_entry: Dict[str, str]) -> str:
 
 def delete_mail(mail_id: str) -> bool:
     """TODO: fill out this docstring (using the load_mail docstring as a guide)
+   Deletes a mail_id (string)
+
+   Returns a boolean (whether or not the mail_id exists)
     """
     mail = load_mail()
     for i, entry in enumerate(mail):
@@ -50,6 +59,9 @@ def delete_mail(mail_id: str) -> bool:
 
 def get_mail(mail_id: str) -> Optional[Dict[str, str]]:
     """TODO: fill out this docstring (using the load_mail docstring as a guide)
+   Gets corresponding mail from the mail_id (string), if it exists
+
+   May or may not return a dictionary of strings (mails) depending if the mail_id exists or not
     """
     mail = load_mail()
     for entry in mail:
@@ -60,6 +72,9 @@ def get_mail(mail_id: str) -> Optional[Dict[str, str]]:
 
 def get_inbox(recipient: str) -> List[Dict[str, str]]:
     """TODO: fill out this docstring (using the load_mail docstring as a guide)
+   Gets the recipient's inbox 
+
+   Returns: the inbox (a list of dictionaries representing mail entries)
     """
     mail = load_mail()
     inbox = []
@@ -71,6 +86,7 @@ def get_inbox(recipient: str) -> List[Dict[str, str]]:
 
 def get_sent(sender: str) -> List[Dict[str, str]]:
     """TODO: fill out this docstring (using the load_mail docstring as a guide)
+   
     """
     mail = load_mail()
     sent = []
