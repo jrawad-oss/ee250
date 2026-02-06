@@ -128,9 +128,10 @@ def delete_mail_route(mail_id: str):
     # set up a verification of mail was deleted (200 for success, 404 for error)
     res = jsonify(delete_id)
     if delete_id:
-	res.status_code = 200 #successful
-    else 
-	res.status_code = 404 #error
+        res.status_code = 200 #successful
+    else:
+        res.status_code = 404 #error
+
     return res
 
 @app.route('/mail/<mail_id>', methods=['GET'])
@@ -165,8 +166,8 @@ def get_inbox_route(recipient: str):
 
 # TODO: implement a rout e to get all mail entries for a sender
 # HINT: start with soemthing like this:
-  @app.route('/mail/sent/<sender>', methods['GET'])
-  def get_sent_route(sender: str)
+@app.route('/mail/sent/<sender>', methods=['GET'])
+def get_sent_route(sender: str):
 
     res = jsonify(get_sent(sender))
     res.status_code = 200
