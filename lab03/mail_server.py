@@ -24,17 +24,25 @@ def load_mail() -> List[Dict[str, str]]:
 
 def save_mail(mail: List[Dict[str, str]]) -> None:
     """TODO: fill out this docstring (using the load_mail docstring as a guide)
-   Saves the mail (a list of dictionaries representing the mail entries) into json format
+    Saves the mail to the json file
 
-   Returns: nothing
+    Args:
+        mail (list): A list of dictionaries representing the mail entries being saved
+
+    Returns:
+        None
     """
     thisdir.joinpath('mail_db.json').write_text(json.dumps(mail, indent=4))
 
 def add_mail(mail_entry: Dict[str, str]) -> str:
     """TODO: fill out this docstring (using the load_mail docstring as a guide)
-   Assigns a mail id for the mail entry (a dictionary of the mail entry's attributes) 
+    Adds new mail and save to the json file
 
-   Returns: mail ID (string)
+    Args:
+        mail_entry (dict): a dictionary representing the new mail entry being added
+
+    Returns:
+        str: the unique ID assigned to the new mail entry
     """
     mail = load_mail()
     mail.append(mail_entry)
@@ -44,9 +52,13 @@ def add_mail(mail_entry: Dict[str, str]) -> str:
 
 def delete_mail(mail_id: str) -> bool:
     """TODO: fill out this docstring (using the load_mail docstring as a guide)
-   Deletes a mail_id (string)
+    Deletes a mail entry from the json file
 
-   Returns a boolean (whether or not the mail_id exists)
+    Args:
+        mail_id (str): The unique ID assigned to a mail entry being deleted
+
+    Returns:
+        bool: True if a successful deletion. False otherwise.
     """
     mail = load_mail()
     for i, entry in enumerate(mail):
@@ -59,9 +71,13 @@ def delete_mail(mail_id: str) -> bool:
 
 def get_mail(mail_id: str) -> Optional[Dict[str, str]]:
     """TODO: fill out this docstring (using the load_mail docstring as a guide)
-   Gets corresponding mail from the mail_id (string), if it exists
+    Retrieves mail from a json file.
 
-   May or may not return a dictionary of strings (mails) depending if the mail_id exists or not
+    Args:
+        mail_id (str): The unique ID assigned to the mail entry being retrieved
+
+    Returns:
+        dict or none: A dictionary representing the mail entry if it exists. None otherwise.
     """
     mail = load_mail()
     for entry in mail:
@@ -72,9 +88,13 @@ def get_mail(mail_id: str) -> Optional[Dict[str, str]]:
 
 def get_inbox(recipient: str) -> List[Dict[str, str]]:
     """TODO: fill out this docstring (using the load_mail docstring as a guide)
-   Gets the recipient's inbox 
+    Retrieves all messages for the recipient from a json file. 
+   
+    Args:
+        recipient (str): The receiver of the mail whose mail is being retrieved
 
-   Returns: the inbox (a list of dictionaries representing mail entries)
+    Returns: 
+        list: a list of dictionaries representing all mail entries for the recipient
     """
     mail = load_mail()
     inbox = []
@@ -86,7 +106,13 @@ def get_inbox(recipient: str) -> List[Dict[str, str]]:
 
 def get_sent(sender: str) -> List[Dict[str, str]]:
     """TODO: fill out this docstring (using the load_mail docstring as a guide)
-   
+    Retrieves all mail messages sent by the sender from a json file
+
+    Args:
+        sender (str): the sender of the mail whose mail is being retrieved
+
+    Returns:
+        list: a list of dictionaries representing all mail entries for the sender
     """
     mail = load_mail()
     sent = []
