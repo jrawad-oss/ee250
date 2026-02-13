@@ -48,7 +48,7 @@ if __name__ == '__main__':
 
         #publish date and time in their own topics
         client.publish("jrawad/date", str(now.date()))
+        print(f"Publishing date")
         client.publish("jrawad/time", str(now.time()))
-        print(f"Date: {now.date()}")
-        print(f"Time: {now.time()}")
+        print(f"Publishing time")
 
