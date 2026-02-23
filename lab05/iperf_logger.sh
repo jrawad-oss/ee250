@@ -6,7 +6,7 @@ if [ -z "$1" ]; then
 fi
 
 DISTANCE=$1
-LAPTOP_IP="192.168.1.225"
+LAPTOP_IP="172.20.10.4"
 
 TCP_LOGFILE="iperf_tcp_${DISTANCE}m.csv"
 UDP_LOGFILE="iperf_udp_${DISTANCE}m.csv"
