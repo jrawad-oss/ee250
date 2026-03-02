@@ -12,7 +12,6 @@ grovepi.pinMode(potentiometer,"INPUT")
 
 # clear lcd screen  before starting main loop
 setText("")
-present = ""
 
 while True:
   try:
@@ -20,14 +19,15 @@ while True:
     distance = grovepi.ultrasonicRead(ultrasonic_ranger)
 
     # TODO: read threshold from potentiometer
-    raw_threshold = grovepi.analogRead(potentiometer)
-    threshold = int(raw_threshold / 10.23)
+    threshold = grovepi.analogRead(potentiometer)
 
-     
+    # clear present for every iteration
+    present = ""
     # TODO: format LCD text according to threshhold
     if distance < threshold:
       present = "OBJ PRES"
-    setText(str(threshold) + " cm " + present +"\n" + str(distance) + " cm ")
-
+    else:
+      present = ""
+    setText_norefresh(str(threshold) + " cm " + present + "\n" + str(distance) + " cm") # norefresh ensures the LCD not to be blinking as it will not refresh each time new text is displayed
   except IOError:
     print("Error")
