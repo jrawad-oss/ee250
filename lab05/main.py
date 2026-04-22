@@ -47,9 +47,18 @@ def get_wifi_signal_strength() -> int:
 def main():
     # Choose at least 5 locations to sample the signal strength at
     # These can be rooms in your house, hallways, different floors, outside, etc. (as long as you can get a WiFi signal)
-    locations = ['bedroom', 'living room', 'kitchen', 'bathroom', 'garage']
+    locations = ['bedroom', 'living room', 'kitchen', 'bathroom', 'balcony']
     samples_per_location = 10 # number of samples to take per location
     time_between_samples = 1 # time between samples (in seconds)
+
+
+
+    print("testing wifi signal strength...")
+    print(get_wifi_signal_strength())
+    return
+
+
+
 
     data = [] # list of data points
     for location in locations:
@@ -57,12 +66,18 @@ def main():
         input() # wait for the user to press enter
         signal_strengths = [] # list of signal strengths at this location
 
+
+
         # TODO: collect 10 samples of the signal strength at this location, waiting 1 second between each sample
         # HINT: use the get_wifi_signal_strength function
-        
+        for sample_num in range(samples_per_location):   # loop 10 times to collect samples
+            rssi = get_wifi_signal_strength()  # get current wifi signal strength in dBm
+            signal_strengths.append(rssi)  # store the sample in the list
+            time.sleep(time_between_samples)  # wait 1 second before next sample
+
         # TODO: calculate the mean and standard deviation of the signal strengths you collected at this location
-        signal_strength_mean = None
-        signal_strength_std = None
+        signal_strength_mean = Nonesignal_strength_mean = np.mean(signal_strengths)   # average signal strength
+        signal_strength_std = np.std(signal_strengths)     # spread of signal value
 
         # Question 6: What is the standard deviation? Why is it useful to calculate it?
         data.append((location, signal_strength_mean, signal_strength_std))
@@ -80,7 +95,10 @@ def main():
     # NOTE: use the error_y parameter of px.bar to plot the error bars (1 standard deviation)
     #   documentation: https://plotly.com/python-api-reference/generated/plotly.express.bar.html
     fig = px.bar(
-        
+        df,
+        x = "location",
+        y = "signal_strength_mean",
+        error_y = "signal_strength_std"
     )
     # Question 8: Why is it important to plot the error bars? What do they tell us?
 

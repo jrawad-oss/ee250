@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="refresh" content="5">
+  <title>Bird Wildlife Capture</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 24px;
+      background: #f7f7f7;
+      color: #222;
+    }
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 18px;
+      margin-bottom: 18px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      max-width: 900px;
+    }
+    img {
+      max-width: 100%;
+      border-radius: 10px;
+      border: 1px solid #ddd;
+      margin-top: 10px;
+    }
+    .label {
+      font-size: 20px;
+      font-weight: bold;
+    }
+    .small {
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <h1>Bird Wildlife Capture Dashboard</h1>
+
+  <div class="card">
+    <div class="label">Bird: {{ latest.bird }}</div>
+    <div>Confidence: {{ "%.2f"|format(latest.confidence) }}</div>
+    <div class="small">Last update: {{ latest.timestamp }}</div>
+  </div>
+
+  <div class="card">
+    <h2>Captured Image</h2>
+    {% if latest.capture %}
+      <img src="/{{ latest.capture }}" alt="Captured bird image">
+    {% else %}
+      <p>No capture yet.</p>
+    {% endif %}
+  </div>
+
+  <div class="card">
+    <h2>Spectrogram</h2>
+    {% if latest.spectrogram %}
+      <img src="/{{ latest.spectrogram }}" alt="Spectrogram">
+    {% else %}
+      <p>No spectrogram yet.</p>
+    {% endif %}
+  </div>
+</body>
+</html>
