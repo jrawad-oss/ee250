@@ -234,8 +234,6 @@ finally:
 # end of code
 
 ~Run the System~
-NOTE: Ensure server.py runs with:
-app.run(host="0.0.0.0", port=8000)
 
 STEP 15: On Virtual Machine:
 * make sure you are in final_project folder
